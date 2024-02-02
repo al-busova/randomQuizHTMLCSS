@@ -12,81 +12,25 @@ export function renderPupils(pupils) {
                   <use xlink:href="./images/icons.svg#close"></use>
                 </svg>
               </button>
-              <div class="count-answers">${renderCarrot(count)}</div>
+              <div class="count-answers" data-count=${count}></div>
       </li>`;
     })
     .join("");
   pupilsList.innerHTML = "";
   pupilsList.insertAdjacentHTML("beforeend", result);
+  document.querySelectorAll(".count-answers").forEach((el) => {
+    if (el.dataset.count === `0`) {
+      el.insertAdjacentHTML("beforeend", `0`);
+    } else {
+      for (let step = 0; step < el.dataset.count; step++) {
+        el.insertAdjacentHTML(
+          "beforeend",
+          `<svg class="icon-carrot" width="20" height="26" >
+                <use xlink:href="./images/icons.svg#icon-carrot"></use>
+                </svg>`
+        );
+      }
+    }
+  });
 }
 
-function renderCarrot(num) {
-  if (num === 0) {
-    return `0`;
-  }
-  if (num === 1) {
-    return `
-                <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-              `;
-  }
-  if (num === 2) {
-    return `
-                <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-              `;
-  }
-  if (num === 3) {
-    return `
-                 <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-              `;
-  }
-  if (num === 4) {
-    return `
-               <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                 <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-              `;
-  }
-  if (num === 5) {
-    return `
-                <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                  <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-                <svg class="icon-carrot" width="20" height="26" >
-                  <use xlink:href="./images/icons.svg#icon-carrot"></use>
-                </svg>
-              `;
-  }
-}
