@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <section class="game">
+      <div class="container">
+        <ul class="list pupils-list"></ul>
+        <div class="right-box">
+          <div class="question-wrapper">
+            <div class="question"></div>
+            <ul class="btn-check-list list">
+              <li>
+                <button type="button" class="btn-check" data-id="correct">
+                  Правильно
+                </button>
+              </li>
+              <li>
+                <button type="button" class="btn-check" data-id="no-correct">
+                  Не правильно
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn-quiz"></button>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>
