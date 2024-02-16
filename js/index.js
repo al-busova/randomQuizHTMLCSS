@@ -9,9 +9,11 @@ export const pupilsList = document.querySelector(".pupils-list");
 
 let pupilItem;
 let countQuestions = 0;
+let alreadyPupils = [];
 
 if (localStorage.getItem("pupils") === null) {
   localStorage.setItem("pupils", JSON.stringify(pupils));
+  renderPupils(JSON.parse(localStorage.getItem("pupils")));
 } else {
   renderPupils(JSON.parse(localStorage.getItem("pupils")));
 }
@@ -26,22 +28,32 @@ btnChooseQuestion.addEventListener("click", chooseQuestion);
 function chooseQuestion() {
   pupilItem = document.querySelectorAll(".pupils-item");
   const pupils = JSON.parse(localStorage.getItem("pupils"));
-  const randomPupil = pupils[getRandomIntInclusive(0, pupils.length - 1)];
+  
+  let randomPupil;
   for (let i = 0; i < pupilItem.length; i++) {
-    pupilItem[i].classList.remove("select-pupil");
-    if (pupilItem[i].dataset.id === randomPupil.id) {
-      pupilItem[i].classList.add("select-pupil");
+    randomPupil = pupils[getRandomIntInclusive(0, pupils.length - 1)];
+    if (alreadyPupils.includes(randomPupil.id)) {
+      continue;
+    } else {
+      for (let i = 0; i < pupilItem.length; i++) {
+        pupilItem[i].classList.remove("select-pupil");
+        if (pupilItem[i].dataset.id === randomPupil.id) {
+          pupilItem[i].classList.add("select-pupil");
+        }
+      }
+      alreadyPupils.push(randomPupil.id);
+      if (alreadyPupils.length === 11) {
+        alreadyPupils = [];
+      }
+      break;
     }
   }
-  wrapperQuestion.classList.add("is-show");
-  fieldQuestion.innerHTML = `<div class="bouncer">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>`;
-  setTimeout(showQuestion, 1500);
 
+  wrapperQuestion.classList.add("is-show");
+  fieldQuestion.innerHTML = `<div class="bouncer"><div></div><div></div>
+  <div></div><div></div></div>`;
+
+  setTimeout(showQuestion, 1000);
   function showQuestion() {
     const localQuesions = JSON.parse(localStorage.getItem("guestions"));
 
@@ -80,6 +92,8 @@ function chooseQuestion() {
       });
       localStorage.setItem("pupils", JSON.stringify(newList));
       renderPupils(newList);
+    } else {
+      fieldQuestion.innerHTML = `<p class="question-text">Шкода(( Спробуй наступного разу!</p>`;
     }
   }
 }
@@ -93,7 +107,6 @@ function removePupil(e) {
     return el.id !== needPupilId;
   });
   localStorage.setItem("pupils", JSON.stringify(newList));
-  renderPupils(newList);
 }
 
 function getRandomIntInclusive(min, max) {

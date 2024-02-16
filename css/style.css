@@ -45,7 +45,7 @@ img {
   padding-right: 20px;
 }
 .game {
-  padding: 60px 0;
+  padding: 50px 0;
 }
 .game .container {
   position: relative;
@@ -66,6 +66,7 @@ img {
   flex-wrap: wrap;
   flex-basis: 800px;
   flex-shrink: 0;
+  min-height: 550px;
 }
 .pupils-item {
   display: inline-block;
@@ -75,7 +76,7 @@ img {
   text-align: center;
   min-width: 150px;
   position: relative;
-  transition: background-color 500ms ease;
+  transition: background-color 500ms ease, transform 500ms ease;
 }
 .select-pupil.pupils-item {
   background-color: rgb(44, 192, 44);
@@ -159,6 +160,7 @@ img {
   transform: scale(1.1);
   background-color: rgba(248, 157, 0, 0.973);
 }
+
 .btn-quiz {
   position: absolute;
   bottom: 80px;
